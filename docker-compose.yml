@@ -1,0 +1,41 @@
+version: "3.1"
+
+services :
+
+    mysql:
+        image: mysql/mysql-server:5.7
+        container_name: mysql-container
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: cac40
+            MYSQL_USER: root
+            MYSQL_PASSWORD: root
+        volumes:
+            - ./database:/var/lib/mysql
+            - ./cac40.sql:/docker-entrypoint-initdb.d/init.sql
+        ports:
+            - 3306:3306
+
+    grafana: 
+        image: grafana/grafana
+        container_name: grafana-container
+        volumes:
+          - ./datasources:/etc/grafana/provisioning/datasources/
+          - ./grafana-data:/var/lib/grafana
+          - ./dashboards:/etc/grafana/provisioning/dashboards/
+        environment:
+            GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH: /etc/grafana/provisioning/dashboards/dashboard.json
+            GF_AUTH_ORG_ROLE: viewer
+            GF_AUTH_ANONYMOUS_ENABLED: "true"
+        ports:
+            - 3000:3000
+
+    scraper:
+        build:
+            context: ./scraper
+        container_name: scraper-container
+        
+
+
+
+        
