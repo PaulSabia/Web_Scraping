@@ -18,7 +18,7 @@ Côté base de donnée, nous utiliserons MySQL server qui fera amplement l'affai
 
 Pour la visualisation de nos données nous utiliserons Grafana. Celui-ci est directemennt relié à notre base de donnée MySQL qui nous permet une visualisation rapide, bien adapté au data de type TimeSeries et le tout en temps réél.
 
-### Mise en place du projet 
+## Mise en place du projet 
 
 * Afin d'utiliser ce projet, clonez tout d'abord le repository dans un nouveau dossier : 
 
